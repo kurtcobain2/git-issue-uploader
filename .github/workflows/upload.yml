@@ -19,6 +19,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: test
+        run: |
+          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'files/*.xlsx')" >> $GITHUB_ENV
+          echo $GITHUB_ENV
+
       - name: Set up Python
         uses: actions/setup-python@v5.1.1
         with:
@@ -46,7 +51,7 @@ jobs:
       - name: Run test code
         id: test_code
         run: |
-          python test/index.py files/*.xlsx > test_result.txt
+          python test/index.py > test_result.txt
           cat test_result.txt
 
       - name: Check test result
