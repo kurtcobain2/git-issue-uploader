@@ -27,7 +27,7 @@ jobs:
           echo ${{ github.event.head_commit.message }}
           # echo ${{ github.event.head_commit.added }}
           # echo ${{ github.event.head_commit.modified }}
-          echo ${{ github.event.compare }}
+          # echo "${{ github.event.compare }}"
           echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'files/*.xlsx')" >> $GITHUB_ENV
           echo "${{ env.changed_files }}"
 
