@@ -21,8 +21,7 @@ jobs:
 
       - name: test
         run: |
-          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'files/*.xlsx')" >> $GITHUB_ENV
-          echo $GITHUB_ENV
+          echo ${{ github.event.head_commit.added }}
 
       - name: Set up Python
         uses: actions/setup-python@v5.1.1
