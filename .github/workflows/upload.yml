@@ -35,6 +35,7 @@ jobs:
       - name: Install Node Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
+          cat .github/actions/package.json > package.json
           cat .github/actions/package-lock.json > package-lock.json
           npm ci
 
