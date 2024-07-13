@@ -7,6 +7,10 @@ on:
     paths:
       - 'files/*.xlsx'
 
+permissions: 
+  issues: write
+  contents: read
+
 jobs:
   test-and-upload:
     runs-on: ubuntu-latest
