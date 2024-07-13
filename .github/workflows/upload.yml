@@ -21,15 +21,7 @@ jobs:
 
       - name: test
         run: |
-          # echo ${{ github.event.commits.message }}
-          # echo ${{ github.event.commits.added[0] }}
-          # echo ${{ github.event.after }}
           echo ${{ github.event.head_commit.message }}
-          # echo ${{ github.event.head_commit.added }}
-          # echo ${{ github.event.head_commit.modified }}
-          echo ${{ github.event.compare }}
-          echo "PUSHED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '.xlsx')" >> $GITHUB_ENV
-          echo "$PUSHED_FILES"
 
       # - name: Set up Python
       #   uses: actions/setup-python@v5.1.1
