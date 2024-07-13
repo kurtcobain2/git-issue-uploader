@@ -1,0 +1,47 @@
+name: Excel Upload Workflow
+
+on:
+  push:
+    branches:
+      - manager
+    paths:
+      - 'files/*.xlsx'
+
+jobs:
+  test-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas openpyxl
+
+      - name: Run test code
+        id: test_code
+        run: |
+          python test/index.py files/*.xlsx > test_result.txt
+          cat test_result.txt
+
+      - name: Check test result
+        run: |
+          if grep -q "FAIL" test_result.txt; then
+            echo "Test failed. Exiting"
+            exit 1
+          fi
+
+      - name: Create approval issue
+        id: create_issue
+        uses: peter-evans/create-issue-from-file@v2
+        with:
+          title: "파일 검토"
+          content-filepath: test_result.txt
+          labels: "approval"
