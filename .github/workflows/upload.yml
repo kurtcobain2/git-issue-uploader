@@ -23,6 +23,7 @@ jobs:
 
       - name: test
         run: |
+          echo "$(git diff --name-only HEAD -- '*.xlsx')"
           echo "CHANGED_FILE=$(git diff --name-only HEAD -- '*.xlsx')" >> $GITHUB_ENV
           echo "$CHANGED_FILE"
 
