@@ -23,9 +23,9 @@ jobs:
 
       - name: test
         run: |
-          echo "$(git diff --name-only HEAD -- '*.xlsx')"
-          echo "CHANGED_FILE=$(git diff --name-only HEAD -- '*.xlsx')" >> $GITHUB_ENV
-          echo "$CHANGED_FILE"
+          CHANGED_FILE=$(git diff --name-only HEAD -- '*.xlsx')
+          # echo "CHANGED_FILE=$(git diff --name-only HEAD -- '*.xlsx')" >> $GITHUB_ENV
+          # echo "$CHANGED_FILE"
 
       # - name: Set up Python
       #   uses: actions/setup-python@v5.1.1
