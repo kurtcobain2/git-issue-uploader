@@ -9,7 +9,7 @@ async function run() {
         const issueTitle = core.getInput('issue-title');
         const issueBody = core.getInput('issue-body');
 
-        const issue = await octokit.issue.create({
+        const issue = await octokit.rest.issues.create({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             title: issueTitle,
