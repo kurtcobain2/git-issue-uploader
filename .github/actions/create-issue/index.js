@@ -14,7 +14,6 @@ async function run() {
             repo: github.context.repo.repo,
             title: issueTitle,
             body: issueBody,
-            assignees: ['Github Action'],
             labels: ['승인요청']
         });
 
