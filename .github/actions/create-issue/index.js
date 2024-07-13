@@ -13,7 +13,9 @@ async function run() {
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             title: issueTitle,
-            body: issueBody
+            body: issueBody,
+            assignees: ['Github Action'],
+            labels: ['승인요청']
         });
 
         core.setOutput('issue-number', issue.data.number);
