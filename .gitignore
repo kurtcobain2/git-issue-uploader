@@ -1,7 +1,7 @@
 node_modules
 package-lock.json
 package.json
-!.github/actions/**/package.json
-!.github/actions/**/package-lock.json
+!.github/actions/package.json
+!.github/actions/package-lock.json
 
 DONOTCOMMIT
