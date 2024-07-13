@@ -40,8 +40,8 @@ jobs:
 
       - name: Create approval issue
         id: create_issue
-        uses: peter-evans/create-issue-from-file@v2
+        uses: ./.github/actions/create-issue
         with:
-          title: "파일 검토"
-          content-filepath: test_result.txt
-          labels: "approval"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-title: "[Github Action] 파일 승인 요청"
+          issue-body: 'Please Respond..'
