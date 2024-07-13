@@ -30,7 +30,7 @@ jobs:
           echo "${{ github.event.compare }}"
           # echo "CHANGED_FILE=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'files/*.xlsx')" >> $GITHUB_ENV
           echo "CHANGED_FILE=$(git diff --name-only HEAD -- '*.xlsx')" >> $GITHUB_ENV
-          echo "$CHANGED_FILE"
+          echo "${{ github.env.CHANGED_FILE }}"
 
       # - name: Set up Python
       #   uses: actions/setup-python@v5.1.1
