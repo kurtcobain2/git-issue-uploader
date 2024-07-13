@@ -21,4 +21,4 @@ outputs:
 
 runs:
   using: 'node12'
-  main: 'create-issue.js'
+  main: 'index.js'

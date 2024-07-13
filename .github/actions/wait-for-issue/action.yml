@@ -24,4 +24,4 @@ outputs:
 
 runs:
   using: 'node12'
-  main: 'wait-for-response.js'
+  main: 'index.js'
