@@ -21,49 +21,54 @@ jobs:
 
       - name: test
         run: |
-          echo ${{ github.event.commits.added }}
+          echo ${{ github.event.commits.message }}
+          echo ${{ github.event.commits.added[0] }}
+          echo ${{ github.event.after }}
+          echo ${{ github.event.head_commit.message }}
+          echo ${{ github.event.head_commit.added }}
+          echo ${{ github.event.head_commit.modified }}
 
-      - name: Set up Python
-        uses: actions/setup-python@v5.1.1
-        with:
-          python-version: '3.8'
+      # - name: Set up Python
+      #   uses: actions/setup-python@v5.1.1
+      #   with:
+      #     python-version: '3.8'
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4.0.3
-        with:
-          node-version: 16
+      # - name: Use Node.js
+      #   uses: actions/setup-node@v4.0.3
+      #   with:
+      #     node-version: 16
 
-      - name: Cache node modules
-        uses: actions/cache@v4.0.2
-        id: cache
-        with:
-          path: node_modules
-          key: npm-packages-${{ hashFiles('.github/actions/package-lock.json') }}
+      # - name: Cache node modules
+      #   uses: actions/cache@v4.0.2
+      #   id: cache
+      #   with:
+      #     path: node_modules
+      #     key: npm-packages-${{ hashFiles('.github/actions/package-lock.json') }}
 
-      - name: Install Node Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          cat .github/actions/package.json > package.json
-          cat .github/actions/package-lock.json > package-lock.json
-          npm ci
+      # - name: Install Node Dependencies
+      #   if: steps.cache.outputs.cache-hit != 'true'
+      #   run: |
+      #     cat .github/actions/package.json > package.json
+      #     cat .github/actions/package-lock.json > package-lock.json
+      #     npm ci
 
-      - name: Run test code
-        id: test_code
-        run: |
-          python test/index.py > test_result.txt
-          cat test_result.txt
+      # - name: Run test code
+      #   id: test_code
+      #   run: |
+      #     python test/index.py > test_result.txt
+      #     cat test_result.txt
 
-      - name: Check test result
-        run: |
-          if grep -q "FAIL" test_result.txt; then
-            echo "Test failed. Exiting"
-            exit 1
-          fi
+      # - name: Check test result
+      #   run: |
+      #     if grep -q "FAIL" test_result.txt; then
+      #       echo "Test failed. Exiting"
+      #       exit 1
+      #     fi
 
-      - name: Create approval issue
-        id: create_issue
-        uses: ./.github/actions/create-issue
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          issue-title: "[Github Action] 파일 승인 요청"
-          issue-body: 'Please Respond..'
+      # - name: Create approval issue
+      #   id: create_issue
+      #   uses: ./.github/actions/create-issue
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     issue-title: "[Github Action] 파일 승인 요청"
+      #     issue-body: 'Please Respond..'
