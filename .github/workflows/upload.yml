@@ -23,9 +23,11 @@ jobs:
 
       - name: test
         run: |
-          CHANGED_FILE=$(git diff --name-only HEAD -- '*.xlsx')
+          CHANGED_FILE=$(git diff --name-only HEAD~1 HEAD -- '*.xlsx')
           # echo "CHANGED_FILE=$(git diff --name-only HEAD -- '*.xlsx')" >> $GITHUB_ENV
           echo "$CHANGED_FILE"
+          echo "${{ github.event.head_commit.modified }}"
+          echo "Changed files: ${{ github.event.head_commit.modified }}"
 
       # - name: Set up Python
       #   uses: actions/setup-python@v5.1.1
